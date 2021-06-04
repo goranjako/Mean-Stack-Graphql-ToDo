@@ -17,7 +17,7 @@ let UserSchema = new Schema({
   password: {
         type: String,
         required: true,
-        minlength: 4
+        minlength: 3
     }
 });
 
