@@ -3,6 +3,7 @@ import compression from "compression";
 import cors from "cors";
 import { ApolloServer, gql } from "apollo-server-express";
 import User from "./models/users";
+import Todo from "./models/todo";
 import morgan from "morgan";
 import typeDefs from "./grapql/shemas";
 import mongoose from "mongoose";
@@ -47,7 +48,7 @@ const rootResolveFunction = (parent, args, context, info) => {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: (req) => ({ req, User}),
+  context: (req) => ({ req, User,Todo}),
 });
 
 server.applyMiddleware({ app });
