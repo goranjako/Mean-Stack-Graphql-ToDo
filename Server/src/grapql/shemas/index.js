@@ -1,6 +1,6 @@
 import { gql } from "apollo-server-express";
-
 import user from "./shema";
+import todo from './todo';
 
 const base = gql`
   type Query {
@@ -11,5 +11,5 @@ const base = gql`
     _: String!
   }
 `;
-const typeDefs = [base, user];
+const typeDefs = [base, user,todo];
 export default typeDefs;
