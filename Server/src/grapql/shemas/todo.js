@@ -8,8 +8,8 @@ const todo = gql`
     complete: Boolean!
   }
   extend type Query {
-    todos: [Todo!]
-    todoId(userId: String): [Todos!]!
+
+    todo(userId: String): [Todos!]!
   }
   type Todos {
     userId: String!
