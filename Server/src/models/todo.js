@@ -3,9 +3,9 @@ var user = require('./users');
 var Schema = mongoose.Schema;
 
 var TodoSchema = new Schema({
-  id: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Users',
+    ref: 'User',
     required: true
 },
   item: {

@@ -20,7 +20,7 @@ const todo = gql`
     message: String!
   }
   input todoInput {
-    userId: ID!
+    userId: ID
     item: String!
     complete: Boolean!
   }

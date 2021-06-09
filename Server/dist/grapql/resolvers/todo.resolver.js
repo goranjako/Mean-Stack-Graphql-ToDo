@@ -82,7 +82,7 @@ var _default = {
               case 4:
                 _context2.prev = 4;
                 _context2.next = 7;
-                return _verify.user.validate(input, {
+                return _verify.items.validate(input, {
                   abortEarly: false
                 });
 

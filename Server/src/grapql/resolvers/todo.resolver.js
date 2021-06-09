@@ -1,6 +1,6 @@
 import { FilterRootFields, FilterToSchema } from "apollo-server";
 import { UserInputError } from "apollo-server-express";
-import { user } from "../../config/verify";
+import { items } from "../../config/verify";
 import authHeader from "../../config/auth";
 import { ApolloError } from "apollo-server-express";
 
@@ -22,7 +22,7 @@ export default {
     addTodo: async (paren, { input }, { Todo, req }) => {
       await authHeader(req);
       try {
-        await user.validate(input, { abortEarly: false });
+        await items.validate(input, { abortEarly: false });
         const todo = new Todo({
           userId: input.userId,
           item: input.item,
