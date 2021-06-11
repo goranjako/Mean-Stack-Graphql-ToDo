@@ -5,17 +5,13 @@ const todo = gql`
     id: ID!
     userId: String!
     item: String!
-    complete: Boolean!
+    isCompleted: Boolean!
   }
   extend type Query {
 
-    todo(userId: String): [Todos!]!
+    todo(userId: String): [Todo!]!
   }
-  type Todos {
-    userId: String!
-    item: String!
-    isCompleted: Boolean!
-  }
+ 
   type Message {
     message: String!
   }

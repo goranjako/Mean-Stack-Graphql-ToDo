@@ -32,10 +32,7 @@ items;
   }
 
   ngOnInit() {
-
-
     this.getTodo();
-    this.completed();
     this.todoForm = new FormGroup({
       item: new FormControl('', Validators.compose([
         Validators.required
@@ -61,16 +58,17 @@ items;
     this.items = this.getQuery.valueChanges
       .pipe(map((result) => result.data.todo));
     };
+    removeItem(item){
+
+      
+    }
 
 
 
 
 
 
-removeItem(s) {}
-completed() {
-  console.log(this.items)
-}
+
 onSubmit(g){}
   }
   /*
