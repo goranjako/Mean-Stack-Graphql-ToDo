@@ -90,7 +90,7 @@ var _default = {
                 todo = new Todo({
                   userId: input.userId,
                   item: input.item,
-                  complete: input.complete
+                  isCompleted: input.isCompleted
                 });
                 _context2.next = 10;
                 return todo.save();

@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
           const token: any = data;
           localStorage.setItem('token', token.login.token);
           this.toast.top();
-          this.router.navigate(['./profile']);
+          this.router.navigate(['./todo']);
         },
         (error) => {
           this.loading.hide();

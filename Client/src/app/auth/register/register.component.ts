@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
     this.loading.show(),
     this.apollo
     .mutate({
-      mutation: this.Query.CREATE,
+      mutation: this.Query.Create,
       variables: {
         fullName: f.fullName,
         email: f.email,
@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
         const token: any = data;
         localStorage.setItem('token', token.register.token);
         this.toast.top();
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/todo']);
       },
       (error) => {
         this.loading.hide();

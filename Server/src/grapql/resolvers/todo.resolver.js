@@ -26,7 +26,7 @@ export default {
         const todo = new Todo({
           userId: input.userId,
           item: input.item,
-          complete: input.complete,
+          isCompleted: input.isCompleted,
         });
         const savedtodo = await todo.save();
         return savedtodo;

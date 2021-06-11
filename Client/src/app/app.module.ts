@@ -13,6 +13,7 @@ import { NotFoundComponent } from './index/not-found/not-found.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
@@ -27,7 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule, MDBBootstrapModule.forRoot(), HttpClientModule,GraphQLModule,BrowserAnimationsModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule, ReactiveFormsModule,QuicklinkModule,
     NgxSpinnerModule,SweetAlert2Module,JwtModule.forRoot({
       config: {
         tokenGetter: function tokenGetter() {

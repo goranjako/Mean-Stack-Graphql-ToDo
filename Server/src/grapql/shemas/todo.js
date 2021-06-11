@@ -14,7 +14,7 @@ const todo = gql`
   type Todos {
     userId: String!
     item: String!
-    complete: Boolean!
+    isCompleted: Boolean!
   }
   type Message {
     message: String!
@@ -22,7 +22,7 @@ const todo = gql`
   input todoInput {
     userId: ID
     item: String!
-    complete: Boolean!
+    isCompleted: Boolean!
   }
 
   extend type Mutation {
