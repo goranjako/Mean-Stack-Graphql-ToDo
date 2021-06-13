@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
           this.loading.hide();
           const token: any = data;
           localStorage.setItem('token', token.login.token);
-          this.toast.top();
+          this.toast.top('Login Success!');
           this.router.navigate(['./todo']);
         },
         (error) => {

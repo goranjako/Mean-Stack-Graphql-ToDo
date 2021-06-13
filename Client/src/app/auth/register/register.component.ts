@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
         this.loading.hide();
         const token: any = data;
         localStorage.setItem('token', token.register.token);
-        this.toast.top();
+        this.toast.top('Registration Successful');
         this.router.navigate(['/todo']);
       },
       (error) => {

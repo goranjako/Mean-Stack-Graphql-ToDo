@@ -27,98 +27,144 @@ items;
     private toast: Sweetalert2Service,
     private Query: GraphqlService,
     private loading: NgxSpinnerService) {
-      this.userId = this.Query.getToken();
+
 
   }
 
   ngOnInit() {
-    this.getTodo();
+
     this.todoForm = new FormGroup({
       item: new FormControl('', Validators.compose([
         Validators.required
 
       ])),
     });
+    this.getToken();
+    this.getTodo();
 
   }
   get item() { return this.todoForm.get('item'); }
 
+  getToken(){
+    return this.userId = this.Query.getToken();
+   }
+
+  onSubmit(f){
+    if (this.todoForm.invalid) {
+      return;
+    }
+
+    this.loading.show();
+    this.getToken();
+    this.apollo
+    .mutate({
+      mutation: this.Query.addTodo,
+      variables: {
+        item: f.item,
+        userId: this.userId.user._id,
+        isCompleted: false
+      },
+
+    })
+    .subscribe(
+      ({ data }) => {
+        this.loading.hide();
+        this.todoForm.reset();
+        const message: any = data;
+        this.toast.top(message.addTodo.message);
+        this.getTodo();
+        window.location.reload();
+      },
+      (error) => {
+        this.loading.hide();
+        this.toast.show(error);
+      }
+    );
+
+
+  }
 
 
   getTodo() {
    this.loading.show();
+   this.getToken();
  this.getQuery= this.apollo
     .watchQuery({
       query: this.Query.todo,
       variables:{
         userId: this.userId.user._id
       },
-      fetchPolicy: 'network-only'
     });
     this.items = this.getQuery.valueChanges
       .pipe(map((result) => result.data.todo));
+     return  this.items;
     };
+
     removeItem(item){
-
-      
-    }
-
-
-
-
-
-
-
-onSubmit(g){}
-  }
-  /*
-
-          const token: any = data;
-          localStorage.setItem('token', token.login.token);
-          this.toast.top();
-          this.router.navigate(['./todo']);
+      this.loading.show(),
+      this.apollo
+      .mutate({
+        mutation: this.Query.delete,
+        variables: {
+          id: item
+        },
+      })
+      .subscribe(
+        ({ data }) => {
+          this.loading.hide();
+          const message: any = data;
+          this.getTodo();
+          this.toast.top(message.deleteTodo.message);
+          window.location.reload();
         },
         (error) => {
           this.loading.hide();
           this.toast.show(error);
-          this.router.navigate(['./register']);
         }
       );
-  }
+
+    };
+
+
+
+    trackById(index: number, todo: Todo) {
+      return todo.item;
+  };
+
 
   completed(c) {
     this.isCompleted = !c.isCompleted;
     this.loading.show();
-    const data = {item: c.item, id: c.id, isCompleted: this.isCompleted};
-    this.todos.updateTodo(c._id, data).subscribe(
-      res => {
-        this.toast.show('success', res.msg);
-        this.loading.hide();
-        this.getTodo();
+    console.log(c);
+    this.apollo
+    .mutate({
+      mutation: this.Query.updateTodo,
+      variables: {
+        id:c.id, 
+        item: c.item,
+        userId:this.userId.user._id,
+        isCompleted: this.isCompleted
       },
-      err => {
-        this.toast.show('warning', err.error.msg);
+
+    })
+    .subscribe(
+      ({ data }) => {
         this.loading.hide();
+        this.todoForm.reset();
+        const message: any = data;
+        this.toast.top(message.updateTodo.message);
+        this.getTodo();
+        window.location.reload();
+      },
+      (error) => {
+        this.loading.hide();
+        this.toast.show(error);
       }
     );
   }
 
-  removeItem(s) {
-    this.loading.show();
-    this.todos.deleteTodo(s._id).subscribe(
-      res => {
-        this.toast.show('success', res.msg);
-        this.loading.hide();
-        this.getTodo();
-      },
-      err => {
-        this.toast.show('warning', err.error.msg);
-        this.loading.hide();
-      }
-    );
-
   }
 
-}
 
-*/
+
+

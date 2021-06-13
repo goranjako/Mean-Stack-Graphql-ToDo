@@ -69,13 +69,13 @@ var _default = {
     // Insert
     addTodo: function () {
       var _addTodo = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(paren, _ref2, _ref3) {
-        var input, Todo, req, todo, savedtodo;
+        var input, req, Todo, todo, result;
         return _regenerator["default"].wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 input = _ref2.input;
-                Todo = _ref3.Todo, req = _ref3.req;
+                req = _ref3.req, Todo = _ref3.Todo;
                 _context2.next = 4;
                 return (0, _auth["default"])(req);
 
@@ -96,8 +96,10 @@ var _default = {
                 return todo.save();
 
               case 10:
-                savedtodo = _context2.sent;
-                return _context2.abrupt("return", savedtodo);
+                result = _context2.sent;
+                return _context2.abrupt("return", {
+                  message: "Successful Create Item"
+                });
 
               case 14:
                 _context2.prev = 14;
@@ -166,12 +168,12 @@ var _default = {
     //update
     updateTodo: function () {
       var _updateTodo = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(parent, _ref6, _ref7) {
-        var id, updatedTodo, req, Todo, todo, result;
+        var id, input, req, Todo, todo, result;
         return _regenerator["default"].wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                id = _ref6.id, updatedTodo = _ref6.updatedTodo;
+                id = _ref6.id, input = _ref6.input;
                 req = _ref7.req, Todo = _ref7.Todo;
                 _context4.next = 4;
                 return (0, _auth["default"])(req);
@@ -185,13 +187,15 @@ var _default = {
 
               case 7:
                 todo = _context4.sent;
-                todo.set(updatedTodo);
+                todo.set(input);
                 _context4.next = 11;
                 return todo.save();
 
               case 11:
                 result = _context4.sent;
-                return _context4.abrupt("return", result);
+                return _context4.abrupt("return", {
+                  message: "Successful Update Item"
+                });
 
               case 15:
                 _context4.prev = 15;

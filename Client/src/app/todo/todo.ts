@@ -1,6 +1,7 @@
 export class Todo {
-  id?: string;
+  userId?: string;
   item?: string;
   isCompleted: boolean;
+  
 
 }

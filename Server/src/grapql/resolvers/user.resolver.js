@@ -44,8 +44,8 @@ export default {
     register: async (paren, { input }, { User }) => {
       await signUp.validate(input, { abortEarly: false });
       try {
-        const user = await User.findOne({ email: input.email });
-        if (user) {
+        const exsist = await User.findOne({ email: input.email });
+        if (exsist) {
           throw new UserInputError("User already Exists");
         }
         let newUser = new User({
@@ -53,8 +53,8 @@ export default {
           email: input.email,
           password: input.password,
         });
-        const saveduser = await newUser.save();
-        const token = jwt.sign({ saveduser }, process.env.SECRET_TOKEN, {
+        const user = await newUser.save();
+        const token = jwt.sign({ user }, process.env.SECRET_TOKEN, {
           expiresIn: 60 * 60,
         });
         return { token };

@@ -28,14 +28,41 @@ export class GraphqlService {
       }
     }
   `;
+   addTodo = gql`
+   mutation addTodo($userId:String!, $item:String!, $isCompleted: Boolean!) {
+     addTodo(input: { userId: $userId, item: $item, isCompleted: $isCompleted })
+      {
+      message
+     }
+   }
+ `;
+
+updateTodo = gql`
+mutation updateTodo($id:ID!,$userId:String!, $item:String!, $isCompleted: Boolean!) {
+  updateTodo(id:$id, input: { userId: $userId, item: $item, isCompleted: $isCompleted })
+   {
+   message
+  }
+}
+`;
 
 todo = gql`
 query todo($userId:String!){
 todo(userId: $userId)
 {
+
+id,
 item,
 isCompleted
 }
+}
+`;
+
+delete = gql`
+mutation deleteTodo($id:ID!) {
+  deleteTodo(id:$id){
+        message
+  }
 }
 `;
 

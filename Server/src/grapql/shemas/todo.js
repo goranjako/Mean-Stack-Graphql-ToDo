@@ -16,15 +16,15 @@ const todo = gql`
     message: String!
   }
   input todoInput {
-    userId: ID
+    userId:String!
     item: String!
     isCompleted: Boolean!
   }
 
   extend type Mutation {
-    addTodo(input: todoInput!): Todo!
+    addTodo(input: todoInput!): Message!
     deleteTodo(id: ID!): Message!
-    updateTodo(updatedTodo: todoInput!, id: ID!): Todo!
+    updateTodo(input: todoInput!, id: ID!): Message!
   }
 `;
 

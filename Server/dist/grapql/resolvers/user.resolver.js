@@ -147,7 +147,7 @@ var _default = {
     //Register
     register: function () {
       var _register = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(paren, _ref4, _ref5) {
-        var input, User, user, newUser, saveduser, token;
+        var input, User, exsist, newUser, user, token;
         return _regenerator["default"].wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -167,9 +167,9 @@ var _default = {
                 });
 
               case 7:
-                user = _context3.sent;
+                exsist = _context3.sent;
 
-                if (!user) {
+                if (!exsist) {
                   _context3.next = 10;
                   break;
                 }
@@ -186,9 +186,9 @@ var _default = {
                 return newUser.save();
 
               case 13:
-                saveduser = _context3.sent;
+                user = _context3.sent;
                 token = _jsonwebtoken["default"].sign({
-                  saveduser: saveduser
+                  user: user
                 }, process.env.SECRET_TOKEN, {
                   expiresIn: 60 * 60
                 });

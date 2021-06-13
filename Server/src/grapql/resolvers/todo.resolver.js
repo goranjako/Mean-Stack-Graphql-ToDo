@@ -19,7 +19,7 @@ export default {
   },
   Mutation: {
     // Insert
-    addTodo: async (paren, { input }, { Todo, req }) => {
+    addTodo: async (paren, { input }, { req,Todo }) => {
       await authHeader(req);
       try {
         await items.validate(input, { abortEarly: false });
@@ -28,8 +28,8 @@ export default {
           item: input.item,
           isCompleted: input.isCompleted,
         });
-        const savedtodo = await todo.save();
-        return savedtodo;
+        const result = await todo.save();
+        return  { message: "Successful Create Item" };
       } catch (err) {
         throw new ApolloError(err.message);
       }
@@ -45,13 +45,13 @@ export default {
       }
     },
     //update
-    updateTodo: async (parent, { id, updatedTodo }, { req, Todo }) => {
+    updateTodo: async (parent, { id, input }, { req, Todo }) => {
       await authHeader(req);
       try {
         const todo = await Todo.findById({ _id: id }).exec();
-        todo.set(updatedTodo);
+        todo.set(input);
         const result = await todo.save();
-        return result;
+        return { message: "Successful Update Item" };
       } catch (error) {
         throw new UserInputError("Item not found");
       }

@@ -8,11 +8,11 @@ export class Sweetalert2Service {
 
   constructor( ) { }
 
-  top() {
+  top(s) {
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      title: 'Your work has been saved',
+      title: s,
       showConfirmButton: false,
       timer: 2000,
 

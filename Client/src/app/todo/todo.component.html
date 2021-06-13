@@ -1,11 +1,11 @@
 <div class="container d mt-5">
-  <div class="d-flex mt-2" *ngFor="let item of items|async; let i=index">
+  <div class="d-flex mt-2" *ngFor="let item of items|async;trackBy: trackById; let i=index">
         <mdb-card class="rounded hoverable flex-grow-1">
               <mdb-card-body>
                     <div class=" flex-column">
                           <div [ngClass]="{'completed': item.isCompleted}" (click)="completed(item)" class="font-italic text-capitalize font-weight-light text-center ml-1 ">{{item.item}}</div>
                                 <div class="m text-center">
-                                <i (click)="removeItem(item)" class="fas fa-trash text-primary "></i>
+                                <i (click)="removeItem(item.id)" class="fas fa-trash text-primary "></i>
                                 </div>
                     </div>
               </mdb-card-body>
