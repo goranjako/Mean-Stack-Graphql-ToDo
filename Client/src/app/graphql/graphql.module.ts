@@ -8,8 +8,9 @@ import {
 import { HttpLink } from 'apollo-angular/http';
 import { HttpHeaders } from '@angular/common/http';
 import { setContext } from '@apollo/client/link/context';
+import { environment } from 'src/environments/environment.prod';
 
-const uri = 'http://localhost:4000/graphql'; // <-- add the URL of the GraphQL server here
+const uri = environment.api; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink) {
   const basic = setContext((operation, context) => ({
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
